@@ -1,10 +1,16 @@
-/* CSS by ///ADD/// YOUR NAME */
+/* CSS by Jinny Baek */
 
 /* Imported Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wdth,wght@0,18..144,87..112,300..900;1,18..144,87..112,300..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
 
 /* ///ADD/// CSS Reset */
-
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 /* Root Variables */
 :root {
@@ -39,27 +45,123 @@ body.dark-mode {
 }
 
 /* ///ADD/// Skip Link Styles */
+.skip-link {
+  position: absolute;
+  top: 0.5rem;
+  left: -999px;
+  padding: 0.5rem 1rem;
+  background-color: var(--blue-bulletin);
+  color: var(--watchdog-white);
+  border-radius: 4px;
+  text-decoration: none;
+  z-index: 1000;
+}
+.skip-link:focus {
+  left: 0.5rem;
+}
 
 /* ///ADD/// Navigation Styles */
+.mobile-nav {
+  margin: 1rem auto;
+  max-width: 960px;
+}
+.mobile-nav .menu-button {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  background: var(--watchdog-white);
+  border: 1px solid var(--blue-bulletin);
+  border-radius: 20px;
+  cursor: pointer;
+}
+.mobile-nav .menu {
+  list-style: none;
+  padding-left: 0;
+  display: none;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.mobile-nav .menu a {
+  color: var(--blue-bulletin);
+  text-decoration: none;
+}
+#menu-toggle:checked + .menu-button + .menu {
+  display: flex;
+}
 
 /* ///ADD/// Global Layout Styles */
+body {
+  font-family: var(--font-body);
+  background: var(--watchdog-white);
+  color: var(--truth-text);
+  padding: 1rem;
+  line-height: 1.6;
+}
+header, main, footer {
+  max-width: 960px;
+  margin: 0 auto;
+}
+section {
+  margin: 2rem 0;
+  border-radius: 8px;
+}
 
 /* ///ADD/// Global Text Styles */
-
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  color: var(--blue-bulletin);
+}
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; margin-top: 1rem; }
+h3 { font-size: 1.125rem; }
+p, li, label {
+  font-size: 1rem;
+}
 
 /* ///ADD/// medium styles 620px */
-
+@media (min-width: 620px) {
+  body {
+    padding: 2rem;
+  }
+}
 
 /* ///ADD/// large styles 920px */
-
+@media (min-width: 920px) {
+  .mobile-nav .menu-button {
+    display: none;
+  }
+  .mobile-nav .menu {
+    display: flex !important;
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+}
 
 /* ///ADD/// x-large styles 1024px */
-
+@media (min-width: 1024px) {
+  header, main, footer {
+    max-width: 1100px;
+  }
+}
 
 /* ///ADD/// Interaction Queries for color scheme light and dark and motion preference */
+@media (prefers-color-scheme: dark) {
+  body:not(.light-mode):not(.dark-mode) {
+    background: var(--truth-text);
+    color: var(--watchdog-white);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0ms !important;
+    transition-duration: 0ms !important;
+  }
+}
 
-
-/* ///ADD///  Feature Query for :has() that checks if the #menu-toggle is checked */
+/* ///ADD/// Feature Query for :has() that checks if the #menu-toggle is checked */
 @supports (selector(:has(*))) {
-
+  .mobile-nav:has(#menu-toggle:checked) .menu {
+    background-color: rgba(241, 250, 238, 0.95);
+    border-radius: 6px;
+    padding: 0.5rem;
+  }
 }
